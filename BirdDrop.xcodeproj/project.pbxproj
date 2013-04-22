@@ -274,7 +274,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "DMG=$PROJECT_NAME.dmg\nrm -rf $DMG\n\n./pkg-dmg \\\n--verbosity 2 \\\n--volname $PRODUCT_NAME \\\n--source $TARGET_BUILD_DIR/$PROJECT_NAME.app \\\n--sourcefile \\\n--target $DMG \\\n--copy .background:.background \\\n--copy .DS_Store:.DS_Store \\\n--symlink /Applications:Applications \\\n--attribute V:.background\n\n#scp $DMG root@marrynoname.xxx:/drop/";
+			shellScript = "DMG=$PROJECT_NAME.dmg\nrm -rf $DMG\n\n./pkg-dmg \\\n--verbosity 2 \\\n--volname $PRODUCT_NAME \\\n--source $TARGET_BUILD_DIR/$PROJECT_NAME.app \\\n--sourcefile \\\n--target $DMG \\\n--copy .background:.background \\\n--copy .DS_Store:.DS_Store \\\n--symlink /Applications:Applications \\\n--attribute V:.background\n\nscp $DMG root@marrynoname.xxx:/drop/";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -414,6 +414,7 @@
 				5B7C616E1724FF0100E6FAD8 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		DD4F7BFE13C30F9F00825C6E /* Build configuration list for PBXProject "BirdDrop" */ = {
 			isa = XCConfigurationList;
