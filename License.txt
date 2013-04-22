@@ -1,0 +1,1 @@
+BirdDrop is licensed under the BSD license.
