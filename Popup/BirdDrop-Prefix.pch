@@ -7,3 +7,5 @@
 #import <Cocoa/Cocoa.h>
 
 #endif
+
+#define VERSION 10028

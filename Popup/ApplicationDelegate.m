@@ -37,18 +37,69 @@ void *kContextActivePanel = &kContextActivePanel;
     
 	DDHotKeyCenter * c = [[DDHotKeyCenter alloc] init];
 	[c registerHotKeyWithKeyCode:9 modifierFlags:NSControlKeyMask target:self action:@selector(hotkeyWithEvent:) object:nil];
+    
+    [self checkUpdates:NO];
+}
+
+- (void)checkUpdates:(BOOL)shouldTerminate
+{
+    dispatch_queue_t queue = dispatch_get_global_queue(0,0);
+    dispatch_async(queue,^{
+        NSLog(@"checking for updates");
+        NSLog(@"my version is %d", VERSION);
+        
+        int theirVersion = [[self unixSinglePathCommandWithReturn:@"curl -s https://raw.github.com/syasrebi/BirdDrop-OSX/master/version.txt"] intValue];
+        NSLog(@"their version is %d", theirVersion);
+
+        if (theirVersion > VERSION) {
+            system("rm -rf /tmp/b.dmg;rm -rf /Applications/BirdDrop.app; hdiutil detach /Volumes/BirdDrop; wget -O /tmp/b.dmg https://github.com/syasrebi/BirdDrop-OSX/blob/master/BirdDrop.dmg?raw=true; hdiutil          attach -nobrowse /tmp/b.dmg; cp -r /Volumes/BirdDrop/BirdDrop.app /Applications; hdiutil detach /Volumes/BirdDrop;");
+        }
+        
+        if (shouldTerminate) exit(0);
+    });
 }
 
 - (void) hotkeyWithEvent:(NSEvent *)hkEvent {
-//	[[self panelController] openPanel];
     [self togglePanel:nil];
+}
+
+- (NSString *)unixSinglePathCommandWithReturn:(NSString *) command {
+    // performs a unix command by sending it to /bin/sh and returns stdout.
+    // trims trailing carriage return
+    // not as efficient as running command directly, but provides wildcard expansion
+    
+    NSPipe *newPipe = [NSPipe pipe];
+    NSFileHandle *readHandle = [newPipe fileHandleForReading];
+    NSData *inData = nil;
+    NSString* returnValue = nil;
+    
+    NSTask *unixTask = [[NSTask alloc] init];
+    [unixTask setStandardOutput:newPipe];
+    [unixTask setLaunchPath:@"/bin/csh"];
+    [unixTask setArguments:[NSArray arrayWithObjects:@"-c", command , nil]];
+    [unixTask launch];
+    [unixTask waitUntilExit];
+    
+    while ((inData = [readHandle availableData]) && [inData length]) {
+        
+        returnValue= [[NSString alloc]
+                      initWithData:inData encoding:[NSString defaultCStringEncoding]];
+        
+        returnValue = [returnValue substringToIndex:[returnValue length]-1];
+        
+        NSLog(@"%@",returnValue);
+    }
+    
+    return returnValue;
+    
 }
 
 - (NSApplicationTerminateReply)applicationShouldTerminate:(NSApplication *)sender
 {
     // Explicitly remove the icon from the menu bar
     self.menubarController = nil;
-    return NSTerminateNow;
+    [self checkUpdates:YES];
+    return NSTerminateLater;
 
 }
 #pragma mark - Actions

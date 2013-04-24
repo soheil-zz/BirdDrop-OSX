@@ -14,10 +14,22 @@
 				5B7C616F1724FF0A00E6FAD8 /* ShellScript */,
 			);
 			dependencies = (
+				5BD300711727C6830015866C /* PBXTargetDependency */,
 				5B65692517279E4E001EF646 /* PBXTargetDependency */,
 			);
 			name = Dist;
 			productName = Dist;
+		};
+		5BD3006C1727C6780015866C /* Bump Version */ = {
+			isa = PBXAggregateTarget;
+			buildConfigurationList = 5BD3006D1727C6780015866C /* Build configuration list for PBXAggregateTarget "Bump Version" */;
+			buildPhases = (
+				5BD300721727C6910015866C /* ShellScript */,
+			);
+			dependencies = (
+			);
+			name = "Bump Version";
+			productName = "Bump Version";
 		};
 /* End PBXAggregateTarget section */
 
@@ -49,6 +61,13 @@
 			proxyType = 1;
 			remoteGlobalIDString = DD4F7C0313C30F9F00825C6E;
 			remoteInfo = BirdDrop;
+		};
+		5BD300701727C6830015866C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = DD4F7BFB13C30F9F00825C6E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 5BD3006C1727C6780015866C;
+			remoteInfo = "Bump Version";
 		};
 /* End PBXContainerItemProxy section */
 
@@ -252,6 +271,7 @@
 			targets = (
 				DD4F7C0313C30F9F00825C6E /* BirdDrop */,
 				5B7C616B1724FF0100E6FAD8 /* Dist */,
+				5BD3006C1727C6780015866C /* Bump Version */,
 			);
 		};
 /* End PBXProject section */
@@ -285,7 +305,20 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "DMG=$PROJECT_NAME.dmg\nrm -rf $DMG\n\n./pkg-dmg \\\n--verbosity 2 \\\n--volname $PROJECT_NAME \\\n--source $TARGET_BUILD_DIR/$PROJECT_NAME.app \\\n--sourcefile \\\n--target $DMG \\\n--copy .DS_Store:.DS_Store \\\n--mkdir .background \\\n--copy .background/background.png:.background/background.png \\\n--attribute V:.background \\\n--symlink /Applications:Applications\n\nscp $DMG root@marrynoname.xxx:/drop\n\necho $(($(cat version.txt) + 1)) > version.txt\n\nps aux|grep $PROJECT_NAME|grep -v grep|awk '{print $2}'|xargs kill\nrm -rf /Applications/$PROJECT_NAME.app\ncp -r $TARGET_BUILD_DIR/$PROJECT_NAME.app /Applications\nopen /Applications/$PROJECT_NAME.app";
+			shellScript = "DMG=$PROJECT_NAME.dmg\nrm -rf $DMG\n\n./pkg-dmg \\\n--verbosity 2 \\\n--volname $PROJECT_NAME \\\n--source $TARGET_BUILD_DIR/$PROJECT_NAME.app \\\n--sourcefile \\\n--target $DMG \\\n--copy .DS_Store:.DS_Store \\\n--mkdir .background \\\n--copy .background/background.png:.background/background.png \\\n--attribute V:.background \\\n--symlink /Applications:Applications\n\nscp $DMG root@marrynoname.xxx:/drop\n\nps aux|grep $PROJECT_NAME|grep -v grep|awk '{print $2}'|xargs kill\nrm -rf /Applications/$PROJECT_NAME.app\ncp -r $TARGET_BUILD_DIR/$PROJECT_NAME.app /Applications\nopen /Applications/$PROJECT_NAME.app";
+		};
+		5BD300721727C6910015866C /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "ver=$(($(cat version.txt) + 1))\necho $ver > version.txt\n\nsed s/\"VERSION.*\"/\"VERSION $ver\"/ Popup/BirdDrop-Prefix.pch > /tmp/a\nmv /tmp/a Popup/BirdDrop-Prefix.pch";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -313,6 +346,11 @@
 			target = DD4F7C0313C30F9F00825C6E /* BirdDrop */;
 			targetProxy = 5B65692417279E4E001EF646 /* PBXContainerItemProxy */;
 		};
+		5BD300711727C6830015866C /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 5BD3006C1727C6780015866C /* Bump Version */;
+			targetProxy = 5BD300701727C6830015866C /* PBXContainerItemProxy */;
+		};
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
@@ -336,6 +374,20 @@
 			name = Debug;
 		};
 		5B7C616E1724FF0100E6FAD8 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		5BD3006E1727C6780015866C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		5BD3006F1727C6780015866C /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -434,6 +486,14 @@
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
+		};
+		5BD3006D1727C6780015866C /* Build configuration list for PBXAggregateTarget "Bump Version" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				5BD3006E1727C6780015866C /* Debug */,
+				5BD3006F1727C6780015866C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
 		};
 		DD4F7BFE13C30F9F00825C6E /* Build configuration list for PBXProject "BirdDrop" */ = {
 			isa = XCConfigurationList;
