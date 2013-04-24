@@ -23,4 +23,4 @@ bin
 # default project workspace
 project.xcworkspace
 
-*.dmg
+#*.dmg

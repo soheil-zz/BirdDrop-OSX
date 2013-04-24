@@ -285,7 +285,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "DMG=$PROJECT_NAME.dmg\nrm -rf $DMG\n\n./pkg-dmg \\\n--verbosity 2 \\\n--volname $PROJECT_NAME \\\n--source $TARGET_BUILD_DIR/$PROJECT_NAME.app \\\n--sourcefile \\\n--target $DMG \\\n--copy .DS_Store:.DS_Store \\\n--mkdir .background \\\n--copy .background/background.png:.background/background.png \\\n--attribute V:.background \\\n--symlink /Applications:Applications\n\nscp $DMG root@marrynoname.xxx:/drop\n\nps aux|grep $PROJECT_NAME|grep -v grep|awk '{print $2}'|xargs kill\nrm -rf /Applications/$PROJECT_NAME.app\ncp -r $TARGET_BUILD_DIR/$PROJECT_NAME.app /Applications\nopen /Applications/$PROJECT_NAME.app";
+			shellScript = "DMG=$PROJECT_NAME.dmg\nrm -rf $DMG\n\n./pkg-dmg \\\n--verbosity 2 \\\n--volname $PROJECT_NAME \\\n--source $TARGET_BUILD_DIR/$PROJECT_NAME.app \\\n--sourcefile \\\n--target $DMG \\\n--copy .DS_Store:.DS_Store \\\n--mkdir .background \\\n--copy .background/background.png:.background/background.png \\\n--attribute V:.background \\\n--symlink /Applications:Applications\n\nscp $DMG root@marrynoname.xxx:/drop\n\necho $(($(cat version.txt) + 1)) > version.txt\n\nps aux|grep $PROJECT_NAME|grep -v grep|awk '{print $2}'|xargs kill\nrm -rf /Applications/$PROJECT_NAME.app\ncp -r $TARGET_BUILD_DIR/$PROJECT_NAME.app /Applications\nopen /Applications/$PROJECT_NAME.app";
 		};
 /* End PBXShellScriptBuildPhase section */
 
