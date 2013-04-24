@@ -23,6 +23,12 @@ S: Search
 
 For issues or feature requests please use [Github](https://github.com/syasrebi/BirdDrop-OSX/issues).
 
+## Features
+
+- Embedded browsing
+- Auto-update
+- Optional keyboard-only navigation/tweeting
+
 ## License
 
 BirdDrop is licensed under the BSD license.
