@@ -99,6 +99,7 @@ void *kContextActivePanel = &kContextActivePanel;
     // Explicitly remove the icon from the menu bar
     self.menubarController = nil;
     [self checkUpdates:YES];
+    [[NSApp keyWindow] setIsVisible:NO];
     return NSTerminateLater;
 
 }
