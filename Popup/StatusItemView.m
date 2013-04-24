@@ -55,8 +55,7 @@
     
     NSMenu *theMenu = [[NSMenu alloc] init];
     [theMenu insertItemWithTitle:@"Quit BirdDrop" action:@selector(terminate:) keyEquivalent:@"q" atIndex:0];
-    [theMenu setAutoenablesItems:NO];
-    [theMenu setDelegate:self];
+    [theMenu insertItemWithTitle:[@"ver. " stringByAppendingFormat:@"%d", VERSION] action:nil keyEquivalent:@"" atIndex:1];
     
     [self.statusItem popUpStatusItemMenu:theMenu];
 }
