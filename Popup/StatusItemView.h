@@ -1,4 +1,4 @@
-@interface StatusItemView : NSView {
+@interface StatusItemView : NSView <NSMenuDelegate> {
 @private
     NSImage *_image;
     NSImage *_alternateImage;

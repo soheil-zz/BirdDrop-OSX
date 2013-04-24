@@ -25,7 +25,6 @@
     return self;
 }
 
-
 #pragma mark -
 
 - (void)drawRect:(NSRect)dirtyRect
@@ -48,6 +47,18 @@
 - (void)mouseDown:(NSEvent *)theEvent
 {
     [NSApp sendAction:self.action to:self.target from:self];
+}
+
+- (void)rightMouseDown:(NSEvent *)theEvent
+{
+    [super rightMouseDown:theEvent];
+    
+    NSMenu *theMenu = [[NSMenu alloc] init];
+    [theMenu insertItemWithTitle:@"Quit BirdDrop" action:@selector(terminate:) keyEquivalent:@"q" atIndex:0];
+    [theMenu setAutoenablesItems:NO];
+    [theMenu setDelegate:self];
+    
+    [self.statusItem popUpStatusItemMenu:theMenu];
 }
 
 #pragma mark -
