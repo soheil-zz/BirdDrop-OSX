@@ -89,6 +89,15 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(runSearch) name:NSControlTextDidChangeNotification object:self.searchField];
 }
 
+- (void)webView:(WebView *)sender didFinishLoadForFrame:(WebFrame *)frame
+{
+    NSLog(@"load complete");
+    [webView stringByEvaluatingJavaScriptFromString:
+     @"document.body.addEventListener('keydown', function(ev) { var el = document.getSelection().anchorNode;if (el && (el.innerHTML.indexOf('input') !== -1 || el.innerHTML.indexOf('textarea') !== -1)) {return 0;};var sel; switch(String.fromCharCode(ev.keyCode)) { case 'H': sel = '.navbar div[tab=\"tweets\"]'; break; case 'C': sel =      '.navbar div[tab=\"connect\"]'; break; case 'D': sel = '.navbar div[tab=\"discover\"]'; break; case 'M': sel = '.navbar div[tab=\"account\"]'; break; case 'N': sel = '.navItems div[nav=\"compose\"]'; break; case 'S': sel = '.navItems div[nav=\"search\"]'; break; } var el =         document.querySelector(sel); if (el) { var evt = document.createEvent('MouseEvents'); evt.initMouseEvent('click', true, true, window, 0, 0, 0, 0, 0, false,         false, false, false, 0, null); el.dispatchEvent(evt); } }, false);"
+     ];
+    NSLog(@"inserting key.js");
+}
+
 #pragma mark - Public accessors
 
 - (BOOL)hasActivePanel
@@ -260,8 +269,6 @@
     [[panel animator] setFrame:panelRect display:YES];
     [[panel animator] setAlphaValue:1];
     [NSAnimationContext endGrouping];
-    
-    [panel performSelector:@selector(makeFirstResponder:) withObject:self.searchField afterDelay:openDuration];
 }
 
 - (void)closePanel
