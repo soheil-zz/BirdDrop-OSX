@@ -114,7 +114,7 @@
 							<bool key="UseBackForwardList">YES</bool>
 							<bool key="AllowsUndo">YES</bool>
 						</object>
-						<object class="NSButton" id="103355925">
+						<object class="NSButton" id="242772010">
 							<reference key="NSNextResponder" ref="290197886"/>
 							<int key="NSvFlags">268</int>
 							<string key="NSFrame">{{0, 416}, {326, 23}}</string>
@@ -123,7 +123,7 @@
 							<reference key="NSNextKeyView"/>
 							<string key="NSReuseIdentifierKey">_NS:22</string>
 							<bool key="NSEnabled">YES</bool>
-							<object class="NSButtonCell" key="NSCell" id="194711526">
+							<object class="NSButtonCell" key="NSCell" id="140658588">
 								<int key="NSCellFlags">-2080374784</int>
 								<int key="NSCellFlags2">134217728</int>
 								<string key="NSContents"/>
@@ -133,12 +133,12 @@
 									<int key="NSfFlags">1044</int>
 								</object>
 								<string key="NSCellIdentifier">_NS:22</string>
-								<reference key="NSControlView" ref="103355925"/>
+								<reference key="NSControlView" ref="242772010"/>
 								<int key="NSButtonFlags">-2033434624</int>
 								<int key="NSButtonFlags2">162</int>
 								<object class="NSCustomResource" key="NSNormalImage">
 									<string key="NSClassName">NSImage</string>
-									<string key="NSResourceName">Status@2x</string>
+									<string key="NSResourceName">Status</string>
 								</object>
 								<string key="NSAlternateContents"/>
 								<string key="NSKeyEquivalent"/>
@@ -190,7 +190,7 @@
 					<object class="IBActionConnection" key="connection">
 						<string key="label">openTwitter:</string>
 						<reference key="source" ref="1001"/>
-						<reference key="destination" ref="103355925"/>
+						<reference key="destination" ref="242772010"/>
 					</object>
 					<int key="connectionID">48</int>
 				</object>
@@ -198,7 +198,7 @@
 					<object class="IBOutletConnection" key="connection">
 						<string key="label">back</string>
 						<reference key="source" ref="1001"/>
-						<reference key="destination" ref="103355925"/>
+						<reference key="destination" ref="242772010"/>
 					</object>
 					<int key="connectionID">49</int>
 				</object>
@@ -286,7 +286,7 @@
 						<object class="NSMutableArray" key="children">
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<reference ref="47027129"/>
-							<reference ref="103355925"/>
+							<reference ref="242772010"/>
 						</object>
 						<reference key="parent" ref="194620731"/>
 					</object>
@@ -297,17 +297,17 @@
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">46</int>
-						<reference key="object" ref="103355925"/>
+						<reference key="object" ref="242772010"/>
 						<object class="NSMutableArray" key="children">
 							<bool key="EncodedWithXMLCoder">YES</bool>
-							<reference ref="194711526"/>
+							<reference ref="140658588"/>
 						</object>
 						<reference key="parent" ref="290197886"/>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">47</int>
-						<reference key="object" ref="194711526"/>
-						<reference key="parent" ref="103355925"/>
+						<reference key="object" ref="140658588"/>
+						<reference key="parent" ref="242772010"/>
 					</object>
 				</object>
 			</object>
@@ -476,8 +476,8 @@
 		<bool key="IBDocument.PluginDeclaredDependenciesTrackSystemTargetVersion">YES</bool>
 		<int key="IBDocument.defaultPropertyAccessControl">3</int>
 		<object class="NSMutableDictionary" key="IBDocument.LastKnownImageSizes">
-			<string key="NS.key.0">Status@2x</string>
-			<string key="NS.object.0">{24, 20.5}</string>
+			<string key="NS.key.0">Status</string>
+			<string key="NS.object.0">{22, 19}</string>
 		</object>
 	</data>
 </archive>
