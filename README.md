@@ -4,15 +4,20 @@ BirdDrop is a lightweight client for Twitter on OSX. For more information see [T
 
 ## Keyboard Shortcuts
 
-Keyboard shortcut to slide down: CTRL+V
+Keyboard shortcut to slide down: 
+````
+CTRL+V
+```
 
 To navigate Twitter:
+```
 H: Home
 C: Connect
 D: Discover
 M: Me
 N: New Tweet
 S: Search
+```
 
 ## Issues
 
