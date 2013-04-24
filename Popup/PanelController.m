@@ -22,6 +22,7 @@
 @synthesize searchField = _searchField;
 @synthesize textField = _textField;
 @synthesize webView;
+@synthesize back;
 
 #pragma mark -
 
@@ -61,14 +62,23 @@
 
 #pragma mark -
 
-- (void)awakeFromNib
+- (IBAction)openTwitter:(id)sender;
 {
+    if (sender) {
+        webView.frame = CGRectMake(0, 0, originalWebviewFrame.size.width, originalWebviewFrame.size.height);
+    }
+    [back setTransparent:YES];
     NSString *iphone = @"Mozilla/5.0 (iPhone; CPU iPhone OS 5_0 like Mac OS X) AppleWebKit/534.46 (KHTML, like Gecko) Version/5.1 Mobile/9A334 Safari/7534.48.3";
     [webView setCustomUserAgent: iphone];
     
     NSURL *url = [NSURL URLWithString:@"https://www.twitter.com"];
     NSURLRequest *urlRequest = [NSURLRequest requestWithURL:url];
     [[webView mainFrame] loadRequest:urlRequest];
+}
+
+- (void)awakeFromNib
+{
+    [self openTwitter:nil];
     [super awakeFromNib];
 
     // Make a fully skinned panel
@@ -85,8 +95,15 @@
     
     // Follow search string
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(runSearch) name:NSControlTextDidChangeNotification object:self.searchField];
+    
+    originalWebviewFrame = webView.frame;
 }
-
+- (void)webView:(WebView *)webView decidePolicyForNewWindowAction:(NSDictionary *)actionInformation request:(NSURLRequest *)request newFrameName:(NSString *)frameName decisionListener:(id < WebPolicyDecisionListener >)listener
+{
+    self.webView.frame = CGRectMake(0, -10, originalWebviewFrame.size.width, originalWebviewFrame.size.height - 10);
+    [[self.webView mainFrame] loadRequest:request];
+    [back setTransparent:NO];
+}
 - (void)webView:(WebView *)sender didFinishLoadForFrame:(WebFrame *)frame
 {
     NSLog(@"load complete");

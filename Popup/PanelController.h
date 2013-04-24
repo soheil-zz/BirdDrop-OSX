@@ -22,19 +22,22 @@
     __unsafe_unretained NSSearchField *_searchField;
     __unsafe_unretained NSTextField *_textField;
     id eventMonitor;
+    CGRect originalWebviewFrame;
 }
 
 @property (nonatomic, unsafe_unretained) IBOutlet BackgroundView *backgroundView;
 @property (nonatomic, unsafe_unretained) IBOutlet NSSearchField *searchField;
 @property (nonatomic, unsafe_unretained) IBOutlet NSTextField *textField;
 @property (nonatomic, unsafe_unretained) IBOutlet WebView *webView;
+@property (nonatomic, unsafe_unretained) IBOutlet NSButton *back;
 
 @property (nonatomic) BOOL hasActivePanel;
 @property (nonatomic, unsafe_unretained, readonly) id<PanelControllerDelegate> delegate;
 
 - (id)initWithDelegate:(id<PanelControllerDelegate>)delegate;
-
 - (void)openPanel;
 - (void)closePanel;
+
+- (IBAction)openTwitter:(id)sender;
 
 @end
