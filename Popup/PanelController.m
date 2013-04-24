@@ -64,8 +64,6 @@
 - (void)awakeFromNib
 {
     NSString *iphone = @"Mozilla/5.0 (iPhone; CPU iPhone OS 5_0 like Mac OS X) AppleWebKit/534.46 (KHTML, like Gecko) Version/5.1 Mobile/9A334 Safari/7534.48.3";
-    //    NSString *ipad = @"Mozilla/5.0 (iPad; CPU OS 5_0 like Mac OS X) AppleWebKit/534.46 (KHTML, like Gecko) Version/5.1 Mobile/9A334 Safari/7534.48.3";
-    //    NSString *safari = @"Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10_6_6; en-us) AppleWebKit/533.19.4 (KHTML, like Gecko) Version/5.0.3 Safari/533.19.4";
     [webView setCustomUserAgent: iphone];
     
     NSURL *url = [NSURL URLWithString:@"https://www.twitter.com"];

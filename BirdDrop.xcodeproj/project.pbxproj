@@ -14,6 +14,7 @@
 				5B7C616F1724FF0A00E6FAD8 /* ShellScript */,
 			);
 			dependencies = (
+				5B65692517279E4E001EF646 /* PBXTargetDependency */,
 			);
 			name = Dist;
 			productName = Dist;
@@ -40,6 +41,16 @@
 		DDF4EFAC16C80A510044D141 /* Status@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DDF4EFAB16C80A510044D141 /* Status@2x.png */; };
 		DDF4EFAE16C80AD30044D141 /* StatusHighlighted@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DDF4EFAD16C80AD30044D141 /* StatusHighlighted@2x.png */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		5B65692417279E4E001EF646 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = DD4F7BFB13C30F9F00825C6E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = DD4F7C0313C30F9F00825C6E;
+			remoteInfo = BirdDrop;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		5B7C61601724E26E00E6FAD8 /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
@@ -274,7 +285,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "DMG=$PROJECT_NAME.dmg\nrm -rf $DMG\n\n./pkg-dmg \\\n--verbosity 2 \\\n--volname $PRODUCT_NAME \\\n--source $TARGET_BUILD_DIR/$PROJECT_NAME.app \\\n--sourcefile \\\n--target $DMG \\\n--copy .background:.background \\\n--copy .DS_Store:.DS_Store \\\n--symlink /Applications:Applications \\\n--attribute V:.background\n\nscp $DMG root@marrynoname.xxx:/drop/";
+			shellScript = "DMG=$PROJECT_NAME.dmg\nrm -rf $DMG\n\n./pkg-dmg \\\n--verbosity 2 \\\n--volname $PROJECT_NAME \\\n--source $TARGET_BUILD_DIR/$PROJECT_NAME.app \\\n--sourcefile \\\n--target $DMG \\\n--copy .DS_Store:.DS_Store \\\n--mkdir .background \\\n--copy .background/background.png:.background/background.png \\\n--attribute V:.background \\\n--symlink /Applications:Applications\n\nscp $DMG root@marrynoname.xxx:/drop\n\nps aux|grep $PROJECT_NAME|grep -v grep|awk '{print $2}'|xargs kill\nrm -rf /Applications/$PROJECT_NAME.app\ncp -r $TARGET_BUILD_DIR/$PROJECT_NAME.app /Applications\nopen /Applications/$PROJECT_NAME.app";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -295,6 +306,14 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		5B65692517279E4E001EF646 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = DD4F7C0313C30F9F00825C6E /* BirdDrop */;
+			targetProxy = 5B65692417279E4E001EF646 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		DD4F7C1D13C30F9F00825C6E /* MainMenu.xib */ = {
