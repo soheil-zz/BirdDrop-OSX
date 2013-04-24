@@ -11,7 +11,8 @@
 			isa = PBXAggregateTarget;
 			buildConfigurationList = 5B7C616C1724FF0100E6FAD8 /* Build configuration list for PBXAggregateTarget "Dist" */;
 			buildPhases = (
-				5B7C616F1724FF0A00E6FAD8 /* ShellScript */,
+				5B7C616F1724FF0A00E6FAD8 /* Package & scp DMG */,
+				5BCBD81C1727DBB700EFFE50 /* Install & open locally */,
 			);
 			dependencies = (
 				5BD300711727C6830015866C /* PBXTargetDependency */,
@@ -24,7 +25,7 @@
 			isa = PBXAggregateTarget;
 			buildConfigurationList = 5BD3006D1727C6780015866C /* Build configuration list for PBXAggregateTarget "Bump Version" */;
 			buildPhases = (
-				5BD300721727C6910015866C /* ShellScript */,
+				5BD300721727C6910015866C /* Bump Version */,
 			);
 			dependencies = (
 			);
@@ -294,26 +295,42 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		5B7C616F1724FF0A00E6FAD8 /* ShellScript */ = {
+		5B7C616F1724FF0A00E6FAD8 /* Package & scp DMG */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
+			name = "Package & scp DMG";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "DMG=$PROJECT_NAME.dmg\nrm -rf $DMG\n\n./pkg-dmg \\\n--verbosity 2 \\\n--volname $PROJECT_NAME \\\n--source $TARGET_BUILD_DIR/$PROJECT_NAME.app \\\n--sourcefile \\\n--target $DMG \\\n--copy .DS_Store:.DS_Store \\\n--mkdir .background \\\n--copy .background/background.png:.background/background.png \\\n--attribute V:.background \\\n--symlink /Applications:Applications\n\nscp $DMG root@marrynoname.xxx:/drop\n\nps aux|grep $PROJECT_NAME|grep -v grep|awk '{print $2}'|xargs kill\nrm -rf /Applications/$PROJECT_NAME.app\ncp -r $TARGET_BUILD_DIR/$PROJECT_NAME.app /Applications\nopen /Applications/$PROJECT_NAME.app";
+			shellScript = "DMG=$PROJECT_NAME.dmg\nrm -rf $DMG\n\n./pkg-dmg \\\n--verbosity 2 \\\n--volname $PROJECT_NAME \\\n--source $TARGET_BUILD_DIR/$PROJECT_NAME.app \\\n--sourcefile \\\n--target $DMG \\\n--copy .DS_Store:.DS_Store \\\n--mkdir .background \\\n--copy .background/background.png:.background/background.png \\\n--attribute V:.background \\\n--symlink /Applications:Applications\n\nscp $DMG root@marrynoname.xxx:/drop";
 		};
-		5BD300721727C6910015866C /* ShellScript */ = {
+		5BCBD81C1727DBB700EFFE50 /* Install & open locally */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
+			name = "Install & open locally";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "ps aux|grep $PROJECT_NAME|grep -v grep|awk '{print $2}'|xargs kill\nrm -rf /Applications/$PROJECT_NAME.app\ncp -r $TARGET_BUILD_DIR/$PROJECT_NAME.app /Applications\nopen /Applications/$PROJECT_NAME.app";
+		};
+		5BD300721727C6910015866C /* Bump Version */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Bump Version";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -494,6 +511,7 @@
 				5BD3006F1727C6780015866C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		DD4F7BFE13C30F9F00825C6E /* Build configuration list for PBXProject "BirdDrop" */ = {
 			isa = XCConfigurationList;
