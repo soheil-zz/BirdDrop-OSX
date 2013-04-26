@@ -67,7 +67,7 @@
     if (sender) {
         webView.frame = CGRectMake(0, 0, originalWebviewFrame.size.width, originalWebviewFrame.size.height);
     }
-    [back setTransparent:YES];
+    [back setHidden:YES];
     NSString *iphone = @"Mozilla/5.0 (iPhone; CPU iPhone OS 5_0 like Mac OS X) AppleWebKit/534.46 (KHTML, like Gecko) Version/5.1 Mobile/9A334 Safari/7534.48.3";
     [webView setCustomUserAgent: iphone];
     
@@ -98,17 +98,26 @@
     
     originalWebviewFrame = webView.frame;
 }
+
 - (void)webView:(WebView *)webView decidePolicyForNewWindowAction:(NSDictionary *)actionInformation request:(NSURLRequest *)request newFrameName:(NSString *)frameName decisionListener:(id < WebPolicyDecisionListener >)listener
 {
-    self.webView.frame = CGRectMake(0, -10, originalWebviewFrame.size.width, originalWebviewFrame.size.height - 10);
+    clickedOnLinkOnce = YES;
     [[self.webView mainFrame] loadRequest:request];
-    [back setTransparent:NO];
 }
+
+- (void)webView:(WebView *)webView decidePolicyForNavigationAction:(NSDictionary *)actionInformation request:(NSURLRequest *)request frame:(WebFrame *)frame decisionListener:(id<WebPolicyDecisionListener>)listener
+{
+    BOOL isTwitter = [request.URL.host rangeOfString:@"twitter.com"].location != NSNotFound;
+    if (clickedOnLinkOnce) self.webView.frame = CGRectMake(0, (isTwitter ? 0 : -10), originalWebviewFrame.size.width, originalWebviewFrame.size.height - (isTwitter ? 0 : 10));
+    [back setHidden:isTwitter];
+    [listener use];
+}
+
 - (void)webView:(WebView *)sender didFinishLoadForFrame:(WebFrame *)frame
 {
     NSLog(@"load complete");
     [webView stringByEvaluatingJavaScriptFromString:
-     @"document.body.addEventListener('keydown', function(ev) { var el = document.getSelection().anchorNode;if (el && (el.innerHTML.indexOf('input') !== -1 || el.innerHTML.indexOf('textarea') !== -1)) {return 0;};var sel; switch(String.fromCharCode(ev.keyCode)) { case 'H': sel = '.navbar div[tab=\"tweets\"]'; break; case 'C': sel =      '.navbar div[tab=\"connect\"]'; break; case 'D': sel = '.navbar div[tab=\"discover\"]'; break; case 'M': sel = '.navbar div[tab=\"account\"]'; break; case 'N': sel = '.navItems div[nav=\"compose\"]'; break; case 'S': sel = '.navItems div[nav=\"search\"]'; break; } var el =         document.querySelector(sel); if (el) { var evt = document.createEvent('MouseEvents'); evt.initMouseEvent('click', true, true, window, 0, 0, 0, 0, 0, false,         false, false, false, 0, null); el.dispatchEvent(evt); } }, false);"
+     @"var arrowi=0; var arrowj=0; var semaphore=0;document.body.addEventListener('keydown', function(ev) { if(semaphore)return; semaphore=1; var el = document.getSelection().anchorNode;if (el && (el.innerHTML.indexOf('input') !== -1 || el.innerHTML.indexOf('textarea') !== -1)) {return 0;}; if(document.location.pathname=='/'&&ev.keyCode==13){var el=document.querySelector('.stream-item:nth-child('+arrowj+')');if(el)doclick(el);}if(document.location.pathname=='/'&&(ev.keyCode==38||ev.keyCode==40)){if(arrowj<0)arrowj=0;var el=document.querySelector('.stream-item:nth-child('+arrowj+')'); if(el)el.style.backgroundColor='white'; if(ev.keyCode==38)arrowj--; if(ev.keyCode==40)arrowj++; el=document.querySelector('.stream-item:nth-child('+arrowj+')'); if(el){el.style.backgroundColor='lightblue';if(arrowj%4==0||ev.keyCode==38)el.scrollIntoView();}semaphore=0;/*up-down is done*/} var sel; if(!ev.metaKey&&ev.keyCode==37)arrowi--; if(!ev.metaKey&&ev.keyCode==39)arrowi++; if(arrowi<0)arrowi=3; if(arrowi>3)arrowi=0; var char=String.fromCharCode(ev.keyCode); if(!ev.metaKey&&(ev.keyCode==37||ev.keyCode==39))char=['H','C','D','M'][arrowi]; switch(char) { case 'H': sel = '.navbar div[tab=\"tweets\"]'; break; case 'C': sel =      '.navbar div[tab=\"connect\"]'; break; case 'D': sel = '.navbar div[tab=\"discover\"]'; break; case 'M': sel = '.navbar div[tab=\"account\"]'; break; case 'N': sel = '.navItems div[nav=\"compose\"]'; break; case 'S': sel = '.navItems div[nav=\"search\"]'; break; } var el =         document.querySelector(sel); if (el) { doclick(el); } function doclick(el) {var evt = document.createEvent('MouseEvents'); evt.initMouseEvent('click', true, true, window, 0, 0, 0, 0, 0, false,         false, false, false, 0, null); el.dispatchEvent(evt); } setTimeout(function(){semaphore=0}, 100)}, false);"
      ];
     NSLog(@"inserting key.js");
 }

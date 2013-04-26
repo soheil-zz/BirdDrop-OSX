@@ -39,6 +39,7 @@
 		5B7C61631724F03400E6FAD8 /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5B7C61621724F03400E6FAD8 /* Carbon.framework */; };
 		5B7C61661724F06500E6FAD8 /* DDHotKeyCenter.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B7C61651724F06500E6FAD8 /* DDHotKeyCenter.m */; };
 		5B7C616A1724FD0000E6FAD8 /* BirdDrop.iconset in Resources */ = {isa = PBXBuildFile; fileRef = 5B7C61691724FD0000E6FAD8 /* BirdDrop.iconset */; };
+		5BC128B2172A545A007F7883 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 5BC128B1172A545A007F7883 /* README.md */; };
 		DD4F7C0913C30F9F00825C6E /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DD4F7C0813C30F9F00825C6E /* Cocoa.framework */; };
 		DD4F7C1513C30F9F00825C6E /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = DD4F7C1413C30F9F00825C6E /* main.m */; };
 		DD4F7C1C13C30F9F00825C6E /* ApplicationDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = DD4F7C1B13C30F9F00825C6E /* ApplicationDelegate.m */; };
@@ -78,6 +79,7 @@
 		5B7C61641724F06400E6FAD8 /* DDHotKeyCenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DDHotKeyCenter.h; sourceTree = "<group>"; };
 		5B7C61651724F06500E6FAD8 /* DDHotKeyCenter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DDHotKeyCenter.m; sourceTree = "<group>"; };
 		5B7C61691724FD0000E6FAD8 /* BirdDrop.iconset */ = {isa = PBXFileReference; lastKnownFileType = folder.iconset; name = BirdDrop.iconset; path = Popup/BirdDrop.iconset; sourceTree = "<group>"; };
+		5BC128B1172A545A007F7883 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
 		DD4F7C0413C30F9F00825C6E /* BirdDrop.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BirdDrop.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DD4F7C0813C30F9F00825C6E /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		DD4F7C0B13C30F9F00825C6E /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
@@ -123,6 +125,7 @@
 		DD4F7BF913C30F9F00825C6E = {
 			isa = PBXGroup;
 			children = (
+				5BC128B1172A545A007F7883 /* README.md */,
 				5B7C61691724FD0000E6FAD8 /* BirdDrop.iconset */,
 				5B7C61621724F03400E6FAD8 /* Carbon.framework */,
 				5B7C61601724E26E00E6FAD8 /* WebKit.framework */,
@@ -240,6 +243,7 @@
 				DD4F7C0013C30F9F00825C6E /* Sources */,
 				DD4F7C0113C30F9F00825C6E /* Frameworks */,
 				DD4F7C0213C30F9F00825C6E /* Resources */,
+				5BC128B0172A423D007F7883 /* Kill Existing Procs */,
 			);
 			buildRules = (
 			);
@@ -289,6 +293,7 @@
 				DDF4EFAC16C80A510044D141 /* Status@2x.png in Resources */,
 				DDF4EFAE16C80AD30044D141 /* StatusHighlighted@2x.png in Resources */,
 				5B7C616A1724FD0000E6FAD8 /* BirdDrop.iconset in Resources */,
+				5BC128B2172A545A007F7883 /* README.md in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -309,6 +314,20 @@
 			shellPath = /bin/sh;
 			shellScript = "DMG=$PROJECT_NAME.dmg\nrm -rf $DMG\n\n./pkg-dmg \\\n--verbosity 2 \\\n--volname $PROJECT_NAME \\\n--source $TARGET_BUILD_DIR/$PROJECT_NAME.app \\\n--sourcefile \\\n--target $DMG \\\n--copy .DS_Store:.DS_Store \\\n--mkdir .background \\\n--copy .background/background.png:.background/background.png \\\n--attribute V:.background \\\n--symlink /Applications:Applications\n\nscp $DMG root@marrynoname.xxx:/drop";
 		};
+		5BC128B0172A423D007F7883 /* Kill Existing Procs */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Kill Existing Procs";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "ps aux|grep $PROJECT_NAME|grep -v grep|awk '{print $2}'|xargs kill";
+		};
 		5BCBD81C1727DBB700EFFE50 /* Install & open locally */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -321,7 +340,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "ps aux|grep $PROJECT_NAME|grep -v grep|awk '{print $2}'|xargs kill\nrm -rf /Applications/$PROJECT_NAME.app\ncp -r $TARGET_BUILD_DIR/$PROJECT_NAME.app /Applications\nopen /Applications/$PROJECT_NAME.app";
+			shellScript = "rm -rf /Applications/$PROJECT_NAME.app\ncp -r $TARGET_BUILD_DIR/$PROJECT_NAME.app /Applications\nopen /Applications/$PROJECT_NAME.app";
 		};
 		5BD300721727C6910015866C /* Bump Version */ = {
 			isa = PBXShellScriptBuildPhase;

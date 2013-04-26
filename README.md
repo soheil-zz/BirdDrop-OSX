@@ -18,6 +18,9 @@ M: Me
 N: New Tweet
 S: Search
 ```
+Use left/right arrows to navigate thru different tabs and up/down arrows to select tweets on your Timeline.
+
+Select a tweet and press ```Enter``` to open it.
 
 ## Issues
 

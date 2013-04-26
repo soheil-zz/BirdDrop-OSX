@@ -23,6 +23,7 @@
     __unsafe_unretained NSTextField *_textField;
     id eventMonitor;
     CGRect originalWebviewFrame;
+    BOOL clickedOnLinkOnce;
 }
 
 @property (nonatomic, unsafe_unretained) IBOutlet BackgroundView *backgroundView;
