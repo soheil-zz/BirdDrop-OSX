@@ -15,7 +15,6 @@
 				5BCBD81C1727DBB700EFFE50 /* Install & open locally */,
 			);
 			dependencies = (
-				5BD300711727C6830015866C /* PBXTargetDependency */,
 				5B65692517279E4E001EF646 /* PBXTargetDependency */,
 			);
 			name = Dist;
@@ -64,7 +63,7 @@
 			remoteGlobalIDString = DD4F7C0313C30F9F00825C6E;
 			remoteInfo = BirdDrop;
 		};
-		5BD300701727C6830015866C /* PBXContainerItemProxy */ = {
+		5BAFE0E9172C67B500B01426 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = DD4F7BFB13C30F9F00825C6E /* Project object */;
 			proxyType = 1;
@@ -248,6 +247,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				5BAFE0EA172C67B500B01426 /* PBXTargetDependency */,
 			);
 			name = BirdDrop;
 			productName = Popup;
@@ -312,7 +312,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "DMG=$PROJECT_NAME.dmg\nrm -rf $DMG\n\n./pkg-dmg \\\n--verbosity 2 \\\n--volname $PROJECT_NAME \\\n--source $TARGET_BUILD_DIR/$PROJECT_NAME.app \\\n--sourcefile \\\n--target $DMG \\\n--copy .DS_Store:.DS_Store \\\n--mkdir .background \\\n--copy .background/background.png:.background/background.png \\\n--attribute V:.background \\\n--symlink /Applications:Applications\n\nscp $DMG root@marrynoname.xxx:/drop";
+			shellScript = "DMG=$PROJECT_NAME.dmg\nrm -rf $DMG\n\n./pkg-dmg \\\n--verbosity 2 \\\n--volname $PROJECT_NAME \\\n--source $TARGET_BUILD_DIR/$PROJECT_NAME.app \\\n--sourcefile \\\n--target $DMG \\\n--copy .DS_Store:.DS_Store \\\n--mkdir .background \\\n--copy .background/background.png:.background/background.png \\\n--attribute V:.background \\\n--symlink /Applications:Applications\n\nscp $DMG root@marrynoname.xxx:/drop\necho \"SCP'ed DMG\"\n";
 		};
 		5BC128B0172A423D007F7883 /* Kill Existing Procs */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -326,7 +326,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "ps aux|grep $PROJECT_NAME|grep -v grep|awk '{print $2}'|xargs kill";
+			shellScript = "ps aux|grep $PROJECT_NAME|grep -v grep|awk '{print $2}'|xargs kill\necho \"Killed existing procs\"\n";
 		};
 		5BCBD81C1727DBB700EFFE50 /* Install & open locally */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -354,7 +354,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "ver=$(($(cat version.txt) + 1))\necho $ver > version.txt\n\nsed s/\"VERSION.*\"/\"VERSION $ver\"/ Popup/BirdDrop-Prefix.pch > /tmp/a\nmv /tmp/a Popup/BirdDrop-Prefix.pch";
+			shellScript = "ver=$(($(cat version.txt) + 1))\necho $ver > version.txt\n\nsed s/\"VERSION.*\"/\"VERSION $ver\"/ Popup/BirdDrop-Prefix.pch > /tmp/a\nmv /tmp/a Popup/BirdDrop-Prefix.pch\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -382,10 +382,10 @@
 			target = DD4F7C0313C30F9F00825C6E /* BirdDrop */;
 			targetProxy = 5B65692417279E4E001EF646 /* PBXContainerItemProxy */;
 		};
-		5BD300711727C6830015866C /* PBXTargetDependency */ = {
+		5BAFE0EA172C67B500B01426 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 5BD3006C1727C6780015866C /* Bump Version */;
-			targetProxy = 5BD300701727C6830015866C /* PBXContainerItemProxy */;
+			targetProxy = 5BAFE0E9172C67B500B01426 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
