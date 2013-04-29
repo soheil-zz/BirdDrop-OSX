@@ -24,6 +24,7 @@
     id eventMonitor;
     CGRect originalWebviewFrame;
     BOOL clickedOnLinkOnce;
+    NSTimer *bindKeysTimer;
 }
 
 @property (nonatomic, unsafe_unretained) IBOutlet BackgroundView *backgroundView;
