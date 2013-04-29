@@ -36,7 +36,7 @@ void *kContextActivePanel = &kContextActivePanel;
     _panelController = [self panelController];
     
 	DDHotKeyCenter * c = [[DDHotKeyCenter alloc] init];
-	[c registerHotKeyWithKeyCode:9 modifierFlags:NSControlKeyMask target:self action:@selector(hotkeyWithEvent:) object:nil];
+	[c registerHotKeyWithKeyCode:kVK_ANSI_B modifierFlags:NSControlKeyMask target:self action:@selector(hotkeyWithEvent:) object:nil];
     
     [self checkUpdates:NO];
 }
