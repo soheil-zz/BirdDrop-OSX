@@ -6,7 +6,7 @@ BirdDrop is a lightweight client for Twitter on OSX. For more information see [T
 
 Keyboard shortcut to slide down: 
 ````
-CTRL+V
+CTRL+B
 ```
 
 To navigate Twitter:
