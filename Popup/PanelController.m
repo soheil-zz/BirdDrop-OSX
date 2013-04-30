@@ -128,7 +128,7 @@
     if (!bindKeysTimer) {
         bindKeysTimer = [NSTimer scheduledTimerWithTimeInterval:30.0
                                      target:self
-                                   selector:@selector(bindKeys:)
+                                   selector:@selector(bindKeys)
                                    userInfo:nil
                                     repeats:YES];
     }
