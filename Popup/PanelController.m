@@ -147,11 +147,12 @@
             statusItemView.hasActivity = YES;
         }
         NSUserNotification *notification = [[NSUserNotification alloc] init];
-        notification.title = @"New Twitter BirdDropping";
-        notification.informativeText = resultActivityText;
-        notification.soundName = NSUserNotificationDefaultSoundName;
-        
-        [[NSUserNotificationCenter defaultUserNotificationCenter] deliverNotification:notification];
+        if (notification) {
+            notification.title = @"New Twitter BirdDropping";
+            notification.informativeText = resultActivityText;
+            notification.soundName = NSUserNotificationDefaultSoundName;
+            [[NSUserNotificationCenter defaultUserNotificationCenter] deliverNotification:notification];
+        }
     }
     lastActivityTimestamp = currentActivityTimestamp;
 }
