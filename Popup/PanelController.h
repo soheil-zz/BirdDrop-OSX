@@ -25,18 +25,23 @@
     CGRect originalWebviewFrame;
     BOOL clickedOnLinkOnce;
     NSTimer *bindKeysTimer;
+    NSTimer *checkActivityTimer;
+    BOOL isNotFirstTimeLoadAcitivity;
+    int lastActivityTimestamp;
 }
 
 @property (nonatomic, unsafe_unretained) IBOutlet BackgroundView *backgroundView;
 @property (nonatomic, unsafe_unretained) IBOutlet NSSearchField *searchField;
 @property (nonatomic, unsafe_unretained) IBOutlet NSTextField *textField;
 @property (nonatomic, unsafe_unretained) IBOutlet WebView *webView;
+@property (nonatomic, unsafe_unretained) IBOutlet WebView *webView1;
 @property (nonatomic, unsafe_unretained) IBOutlet NSButton *back;
 
 @property (nonatomic) BOOL hasActivePanel;
 @property (nonatomic, unsafe_unretained, readonly) id<PanelControllerDelegate> delegate;
 
 - (id)initWithDelegate:(id<PanelControllerDelegate>)delegate;
+- (void)openConnectTabEvenIfOnComposePage:(BOOL)shouldForceOpen withHiddenWebview:(BOOL)shouldBeHiddenWebview;
 - (void)openPanel;
 - (void)closePanel;
 

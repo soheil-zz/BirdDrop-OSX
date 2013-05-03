@@ -34,11 +34,18 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
+		5B12391517324437004DC5ED /* PreferencesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B12391317324437004DC5ED /* PreferencesViewController.m */; };
+		5B12391617324437004DC5ED /* PreferencesViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5B12391417324437004DC5ED /* PreferencesViewController.xib */; };
+		5B12391C17324540004DC5ED /* SRRemoveShortcut.tif in Resources */ = {isa = PBXBuildFile; fileRef = 5B12391817324540004DC5ED /* SRRemoveShortcut.tif */; };
+		5B12391D17324540004DC5ED /* SRRemoveShortcutPressed.tif in Resources */ = {isa = PBXBuildFile; fileRef = 5B12391917324540004DC5ED /* SRRemoveShortcutPressed.tif */; };
+		5B12391E17324540004DC5ED /* SRRemoveShortcutRollover.tif in Resources */ = {isa = PBXBuildFile; fileRef = 5B12391A17324540004DC5ED /* SRRemoveShortcutRollover.tif */; };
+		5B12391F17324540004DC5ED /* SRSnapback.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 5B12391B17324540004DC5ED /* SRSnapback.tiff */; };
 		5B7C61611724E26E00E6FAD8 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5B7C61601724E26E00E6FAD8 /* WebKit.framework */; };
 		5B7C61631724F03400E6FAD8 /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5B7C61621724F03400E6FAD8 /* Carbon.framework */; };
 		5B7C61661724F06500E6FAD8 /* DDHotKeyCenter.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B7C61651724F06500E6FAD8 /* DDHotKeyCenter.m */; };
 		5B7C616A1724FD0000E6FAD8 /* BirdDrop.iconset in Resources */ = {isa = PBXBuildFile; fileRef = 5B7C61691724FD0000E6FAD8 /* BirdDrop.iconset */; };
 		5BC128B2172A545A007F7883 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 5BC128B1172A545A007F7883 /* README.md */; };
+		5BE2B9D017337A65003996F6 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DD4F7C0D13C30F9F00825C6E /* Foundation.framework */; };
 		DD4F7C0913C30F9F00825C6E /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DD4F7C0813C30F9F00825C6E /* Cocoa.framework */; };
 		DD4F7C1513C30F9F00825C6E /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = DD4F7C1413C30F9F00825C6E /* main.m */; };
 		DD4F7C1C13C30F9F00825C6E /* ApplicationDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = DD4F7C1B13C30F9F00825C6E /* ApplicationDelegate.m */; };
@@ -73,6 +80,13 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		5B12391217324437004DC5ED /* PreferencesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PreferencesViewController.h; sourceTree = "<group>"; };
+		5B12391317324437004DC5ED /* PreferencesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PreferencesViewController.m; sourceTree = "<group>"; };
+		5B12391417324437004DC5ED /* PreferencesViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PreferencesViewController.xib; sourceTree = "<group>"; };
+		5B12391817324540004DC5ED /* SRRemoveShortcut.tif */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = SRRemoveShortcut.tif; sourceTree = "<group>"; };
+		5B12391917324540004DC5ED /* SRRemoveShortcutPressed.tif */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = SRRemoveShortcutPressed.tif; sourceTree = "<group>"; };
+		5B12391A17324540004DC5ED /* SRRemoveShortcutRollover.tif */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = SRRemoveShortcutRollover.tif; sourceTree = "<group>"; };
+		5B12391B17324540004DC5ED /* SRSnapback.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = SRSnapback.tiff; sourceTree = "<group>"; };
 		5B7C61601724E26E00E6FAD8 /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
 		5B7C61621724F03400E6FAD8 /* Carbon.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Carbon.framework; path = System/Library/Frameworks/Carbon.framework; sourceTree = SDKROOT; };
 		5B7C61641724F06400E6FAD8 /* DDHotKeyCenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DDHotKeyCenter.h; sourceTree = "<group>"; };
@@ -112,6 +126,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5BE2B9D017337A65003996F6 /* Foundation.framework in Frameworks */,
 				5B7C61631724F03400E6FAD8 /* Carbon.framework in Frameworks */,
 				5B7C61611724E26E00E6FAD8 /* WebKit.framework in Frameworks */,
 				DD4F7C0913C30F9F00825C6E /* Cocoa.framework in Frameworks */,
@@ -121,6 +136,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		5B12391717324540004DC5ED /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				5B12391817324540004DC5ED /* SRRemoveShortcut.tif */,
+				5B12391917324540004DC5ED /* SRRemoveShortcutPressed.tif */,
+				5B12391A17324540004DC5ED /* SRRemoveShortcutRollover.tif */,
+				5B12391B17324540004DC5ED /* SRSnapback.tiff */,
+			);
+			path = Images;
+			sourceTree = "<group>";
+		};
 		DD4F7BF913C30F9F00825C6E = {
 			isa = PBXGroup;
 			children = (
@@ -158,6 +184,7 @@
 		DD4F7C0E13C30F9F00825C6E /* Sources */ = {
 			isa = PBXGroup;
 			children = (
+				5B12391717324540004DC5ED /* Images */,
 				5B7C61641724F06400E6FAD8 /* DDHotKeyCenter.h */,
 				5B7C61651724F06500E6FAD8 /* DDHotKeyCenter.m */,
 				DD4F7C2613C311DF00825C6E /* Controllers */,
@@ -186,6 +213,9 @@
 				DD4F7C3713C317A500825C6E /* MenubarController.m */,
 				DD4F7C3D13C318D600825C6E /* PanelController.h */,
 				DD4F7C3E13C318D600825C6E /* PanelController.m */,
+				5B12391217324437004DC5ED /* PreferencesViewController.h */,
+				5B12391317324437004DC5ED /* PreferencesViewController.m */,
+				5B12391417324437004DC5ED /* PreferencesViewController.xib */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -294,6 +324,11 @@
 				DDF4EFAE16C80AD30044D141 /* StatusHighlighted@2x.png in Resources */,
 				5B7C616A1724FD0000E6FAD8 /* BirdDrop.iconset in Resources */,
 				5BC128B2172A545A007F7883 /* README.md in Resources */,
+				5B12391617324437004DC5ED /* PreferencesViewController.xib in Resources */,
+				5B12391C17324540004DC5ED /* SRRemoveShortcut.tif in Resources */,
+				5B12391D17324540004DC5ED /* SRRemoveShortcutPressed.tif in Resources */,
+				5B12391E17324540004DC5ED /* SRRemoveShortcutRollover.tif in Resources */,
+				5B12391F17324540004DC5ED /* SRSnapback.tiff in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -371,6 +406,7 @@
 				DD4F7C4413C31BD200825C6E /* Panel.m in Sources */,
 				DD4F7C4713C3208500825C6E /* BackgroundView.m in Sources */,
 				5B7C61661724F06500E6FAD8 /* DDHotKeyCenter.m in Sources */,
+				5B12391517324437004DC5ED /* PreferencesViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -490,6 +526,11 @@
 			buildSettings = {
 				CLANG_ENABLE_OBJC_ARC = YES;
 				COMBINE_HIDPI_IMAGES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../../Library/Developer/Xcode/DerivedData/ShortcutRecorder-gejgdznrmlizthftgcqcpytrsxnf/Build/Products/Debug\"",
+					"\"$(SRCROOT)\"",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Popup/BirdDrop-Prefix.pch";
 				INFOPLIST_FILE = "Popup/BirdDrop-Info.plist";
@@ -503,6 +544,11 @@
 			buildSettings = {
 				CLANG_ENABLE_OBJC_ARC = YES;
 				COMBINE_HIDPI_IMAGES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../../Library/Developer/Xcode/DerivedData/ShortcutRecorder-gejgdznrmlizthftgcqcpytrsxnf/Build/Products/Debug\"",
+					"\"$(SRCROOT)\"",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Popup/BirdDrop-Prefix.pch";
 				INFOPLIST_FILE = "Popup/BirdDrop-Info.plist";

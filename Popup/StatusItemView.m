@@ -1,4 +1,5 @@
 #import "StatusItemView.h"
+#import "PreferencesViewController.h"
 
 @implementation StatusItemView
 
@@ -54,10 +55,16 @@
     [super rightMouseDown:theEvent];
     
     NSMenu *theMenu = [[NSMenu alloc] init];
+    [theMenu insertItemWithTitle:@"Preferences" action:@selector(openPreferences) keyEquivalent:@"," atIndex:0];
     [theMenu insertItemWithTitle:@"Quit BirdDrop" action:@selector(terminate:) keyEquivalent:@"q" atIndex:0];
     [theMenu insertItemWithTitle:[@"ver. " stringByAppendingFormat:@"%d", VERSION] action:nil keyEquivalent:@"" atIndex:1];
     
     [self.statusItem popUpStatusItemMenu:theMenu];
+}
+
+- (void)openPreferences
+{
+//    PreferencesViewController *vc= [[PreferencesViewController alloc] initWithNibName:@"PreferencesViewController" bundle:nil];
 }
 
 #pragma mark -

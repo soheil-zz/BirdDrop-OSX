@@ -29,15 +29,28 @@ void *kContextActivePanel = &kContextActivePanel;
 
 #pragma mark - NSApplicationDelegate
 
+- (BOOL)userNotificationCenter:(NSUserNotificationCenter *)center shouldPresentNotification:(NSUserNotification *)notification
+{
+    return YES;
+}
+
+- (void)userNotificationCenter:(NSUserNotificationCenter *)center didActivateNotification:(NSUserNotification *)notification
+{
+    [_panelController openPanel];
+    [_panelController openConnectTabEvenIfOnComposePage:NO withHiddenWebview:NO];
+}
+
 - (void)applicationDidFinishLaunching:(NSNotification *)notification
 {
+    [[NSUserNotificationCenter defaultUserNotificationCenter] setDelegate:self];
+
     // Install icon into the menu bar
     self.menubarController = [[MenubarController alloc] init];
     _panelController = [self panelController];
     
 	DDHotKeyCenter * c = [[DDHotKeyCenter alloc] init];
 	[c registerHotKeyWithKeyCode:kVK_ANSI_B modifierFlags:(NSControlKeyMask|NSShiftKeyMask) target:self action:@selector(hotkeyWithEvent:) object:nil];
-    
+
     [self checkUpdates:NO];
 }
 

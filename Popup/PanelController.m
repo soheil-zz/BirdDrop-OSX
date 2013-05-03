@@ -22,6 +22,7 @@
 @synthesize searchField = _searchField;
 @synthesize textField = _textField;
 @synthesize webView;
+@synthesize webView1;
 @synthesize back;
 
 #pragma mark -
@@ -74,6 +75,9 @@
     NSURL *url = [NSURL URLWithString:@"https://www.twitter.com"];
     NSURLRequest *urlRequest = [NSURLRequest requestWithURL:url];
     [[webView mainFrame] loadRequest:urlRequest];
+    
+    [webView1 setCustomUserAgent: iphone];
+    [[webView1 mainFrame] loadRequest:urlRequest];
 }
 
 - (void)awakeFromNib
@@ -121,16 +125,52 @@
     NSLog(@"inserting key.js");
 }
 
+- (void)checkActivity
+{
+    isNotFirstTimeLoadAcitivity = YES;
+    NSString *resultTimestamp = [webView1 stringByEvaluatingJavaScriptFromString:
+                                 @"document.querySelector('.stream-item').getAttribute('activity');"
+                                ];
+    NSString *resultActivityText = [webView1 stringByEvaluatingJavaScriptFromString:
+                                 @"document.querySelector('.stream-item').innerText;"
+                                 ];
+    int currentActivityTimestamp = (int)[resultTimestamp integerValue];
+    NSLog(@"last activity timestamp: %d", currentActivityTimestamp);
+    [self openConnectTabEvenIfOnComposePage:YES withHiddenWebview:YES];
+    
+    if (lastActivityTimestamp != 0 && lastActivityTimestamp != currentActivityTimestamp) {
+        NSUserNotification *notification = [[NSUserNotification alloc] init];
+        notification.title = @"New Twitter BirdDropping";
+        notification.informativeText = resultActivityText;
+        notification.soundName = NSUserNotificationDefaultSoundName;
+        
+        [[NSUserNotificationCenter defaultUserNotificationCenter] deliverNotification:notification];
+    }
+    lastActivityTimestamp = currentActivityTimestamp;
+}
+
 - (void)webView:(WebView *)sender didFinishLoadForFrame:(WebFrame *)frame
 {
-    NSLog(@"load complete");
-    [self bindKeys];
-    if (!bindKeysTimer) {
-        bindKeysTimer = [NSTimer scheduledTimerWithTimeInterval:30.0
-                                     target:self
-                                   selector:@selector(bindKeys)
-                                   userInfo:nil
-                                    repeats:YES];
+    if ([sender isEqualTo:webView]) {
+        NSLog(@"webview load complete");
+        [self bindKeys];
+        if (!bindKeysTimer) {
+            bindKeysTimer = [NSTimer scheduledTimerWithTimeInterval:30.0
+                                         target:self
+                                       selector:@selector(bindKeys)
+                                       userInfo:nil
+                                        repeats:YES];
+        }
+    } else {
+        NSLog(@"webview1 load complete");
+        if (!isNotFirstTimeLoadAcitivity) [self checkActivity];
+        if (!checkActivityTimer) {
+            checkActivityTimer = [NSTimer scheduledTimerWithTimeInterval:60.0
+                                             target:self
+                                           selector:@selector(checkActivity)
+                                           userInfo:nil
+                                            repeats:YES];
+        }
     }
 }
 
@@ -236,6 +276,16 @@
 }
 
 #pragma mark - Public methods
+
+- (void)openConnectTabEvenIfOnComposePage:(BOOL)shouldForceOpen withHiddenWebview:(BOOL)shouldBeHiddenWebview
+{
+    BOOL isOnComposePage = NO;
+    if (!shouldForceOpen && isOnComposePage) return;
+    NSURL *url = [NSURL URLWithString:@"https://mobile.twitter.com/i/connect"];
+    NSURLRequest *urlRequest = [NSURLRequest requestWithURL:url];
+    WebView *webviewToUse = shouldBeHiddenWebview ? webView1 : webView;
+    [[webviewToUse mainFrame] loadRequest:urlRequest];
+}
 
 - (NSRect)statusRectForWindow:(NSWindow *)window
 {

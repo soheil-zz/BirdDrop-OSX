@@ -1,7 +1,7 @@
 #import "MenubarController.h"
 #import "PanelController.h"
 
-@interface ApplicationDelegate : NSObject <NSApplicationDelegate, PanelControllerDelegate>
+@interface ApplicationDelegate : NSObject <NSApplicationDelegate, NSUserNotificationCenterDelegate, PanelControllerDelegate>
 {
     /*
      *  Summary:
