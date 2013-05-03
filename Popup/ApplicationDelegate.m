@@ -61,7 +61,7 @@ void *kContextActivePanel = &kContextActivePanel;
     dispatch_async(queue,^{
         NSLog(@"checking for updates");
         NSLog(@"my version is %d", VERSION);
-        
+
         int theirVersion = [[self unixSinglePathCommandWithReturn:@"curl -s https://raw.github.com/syasrebi/BirdDrop-OSX/master/version.txt"] intValue];
         NSLog(@"their version is %d", theirVersion);
 
