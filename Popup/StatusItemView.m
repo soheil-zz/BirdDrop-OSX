@@ -6,7 +6,9 @@
 @synthesize statusItem = _statusItem;
 @synthesize image = _image;
 @synthesize alternateImage = _alternateImage;
+@synthesize blueImage = _blueImage;
 @synthesize isHighlighted = _isHighlighted;
+@synthesize hasActivity = _hasActivity;
 @synthesize action = _action;
 @synthesize target = _target;
 
@@ -32,7 +34,7 @@
 {
 	[self.statusItem drawStatusBarBackgroundInRect:dirtyRect withHighlight:self.isHighlighted];
     
-    NSImage *icon = self.isHighlighted ? self.alternateImage : self.image;
+    NSImage *icon = self.hasActivity ? self.blueImage : (self.isHighlighted ? self.alternateImage : self.image);
     NSSize iconSize = [icon size];
     NSRect bounds = self.bounds;
     CGFloat iconX = roundf((NSWidth(bounds) - iconSize.width) / 2);
@@ -55,7 +57,7 @@
     [super rightMouseDown:theEvent];
     
     NSMenu *theMenu = [[NSMenu alloc] init];
-    [theMenu insertItemWithTitle:@"Preferences" action:@selector(openPreferences) keyEquivalent:@"," atIndex:0];
+//    [theMenu insertItemWithTitle:@"Preferences" action:@selector(openPreferences) keyEquivalent:@"," atIndex:0];
     [theMenu insertItemWithTitle:@"Quit BirdDrop" action:@selector(terminate:) keyEquivalent:@"q" atIndex:0];
     [theMenu insertItemWithTitle:[@"ver. " stringByAppendingFormat:@"%d", VERSION] action:nil keyEquivalent:@"" atIndex:1];
     
@@ -74,6 +76,14 @@
 {
     if (_isHighlighted == newFlag) return;
     _isHighlighted = newFlag;
+    [self setHasActivity:NO];
+    [self setNeedsDisplay:YES];
+}
+
+- (void)setHasActivity:(BOOL)newFlag
+{
+    if (_hasActivity == newFlag) return;
+    _hasActivity = newFlag;
     [self setNeedsDisplay:YES];
 }
 
@@ -92,6 +102,16 @@
     if (_alternateImage != newImage) {
         _alternateImage = newImage;
         if (self.isHighlighted) {
+            [self setNeedsDisplay:YES];
+        }
+    }
+}
+
+- (void)setBlueImage:(NSImage *)newImage
+{
+    if (_blueImage != newImage) {
+        _blueImage = newImage;
+        if (self.hasActivity) {
             [self setNeedsDisplay:YES];
         }
     }

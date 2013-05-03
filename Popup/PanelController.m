@@ -139,6 +139,13 @@
     [self openConnectTabEvenIfOnComposePage:YES withHiddenWebview:YES];
     
     if (lastActivityTimestamp != 0 && lastActivityTimestamp != currentActivityTimestamp) {
+        NSLog(@"sending notification");
+        StatusItemView *statusItemView = nil;
+        if ([self.delegate respondsToSelector:@selector(statusItemViewForPanelController:)])
+        {
+            statusItemView = [self.delegate statusItemViewForPanelController:self];
+            statusItemView.hasActivity = YES;
+        }
         NSUserNotification *notification = [[NSUserNotification alloc] init];
         notification.title = @"New Twitter BirdDropping";
         notification.informativeText = resultActivityText;

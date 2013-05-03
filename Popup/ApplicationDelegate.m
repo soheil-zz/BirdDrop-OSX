@@ -36,7 +36,8 @@ void *kContextActivePanel = &kContextActivePanel;
 
 - (void)userNotificationCenter:(NSUserNotificationCenter *)center didActivateNotification:(NSUserNotification *)notification
 {
-    [_panelController openPanel];
+    self.menubarController.hasActiveIcon = YES;
+    self.panelController.hasActivePanel = YES;
     [_panelController openConnectTabEvenIfOnComposePage:NO withHiddenWebview:NO];
 }
 
