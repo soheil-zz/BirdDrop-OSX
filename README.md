@@ -4,7 +4,7 @@ BirdDrop is a lightweight client for Twitter on OSX. For more information see [T
 
 ## Mountain Lion Notifications
 
-BirdDrop support new notifications via Mountain Lion's notification center.
+BirdDrop supports new notifications via Mountain Lion's notification center.
 ![Mountain Lion Notification](mountain-lion-notification.png)
 
 
