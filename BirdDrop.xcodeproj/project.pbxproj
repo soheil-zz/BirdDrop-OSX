@@ -383,7 +383,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "rm -rf /Applications/$PROJECT_NAME.app\ncp -r $TARGET_BUILD_DIR/$PROJECT_NAME.app /Applications\nopen /Applications/$PROJECT_NAME.app";
+			shellScript = "#rm -rf /Applications/$PROJECT_NAME.app\n#cp -r $TARGET_BUILD_DIR/$PROJECT_NAME.app /Applications\n#open /Applications/$PROJECT_NAME.app";
 		};
 		5BD300721727C6910015866C /* Bump Version */ = {
 			isa = PBXShellScriptBuildPhase;
