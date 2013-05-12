@@ -66,7 +66,7 @@ void *kContextActivePanel = &kContextActivePanel;
         NSLog(@"their version is %d", theirVersion);
 
         if (theirVersion > VERSION) {
-            system("rm -rf /tmp/b.dmg;rm -rf /Applications/BirdDrop.app; hdiutil detach /Volumes/BirdDrop; wget -O /tmp/b.dmg https://github.com/syasrebi/BirdDrop-OSX/blob/master/BirdDrop.dmg?raw=true; hdiutil          attach -nobrowse /tmp/b.dmg; cp -r /Volumes/BirdDrop/BirdDrop.app /Applications; hdiutil detach /Volumes/BirdDrop;");
+            system("rm -rf /tmp/b.dmg;rm -rf /Applications/BirdDrop.app; hdiutil detach /Volumes/BirdDrop; wget -O /tmp/b.dmg https://github.com/syasrebi/BirdDrop-OSX/blob/master/BirdDrop.dmg?raw=true; hdiutil          attach -nobrowse /tmp/b.dmg; cp -r /Volumes/BirdDrop/BirdDrop.app /Applications/BirdDrop1.app; rm -rf /Applications/BirdDrop.app; mv /Applications/BirdDrop1.app /Applications/BirdDrop.app; hdiutil detach /Volumes/BirdDrop;");
         }
         
         if (shouldTerminate) exit(0);
