@@ -61,14 +61,14 @@ void *kContextActivePanel = &kContextActivePanel;
     dispatch_async(queue,^{
         NSLog(@"checking for updates");
         NSLog(@"my version is %d", VERSION);
-        
+
         int theirVersion = [[self unixSinglePathCommandWithReturn:@"curl -s https://raw.github.com/syasrebi/BirdDrop-OSX/master/version.txt"] intValue];
         NSLog(@"their version is %d", theirVersion);
 
         if (theirVersion > VERSION) {
-            system("rm -rf /tmp/b.dmg;rm -rf /Applications/BirdDrop.app; hdiutil detach /Volumes/BirdDrop; wget -O /tmp/b.dmg https://github.com/syasrebi/BirdDrop-OSX/blob/master/BirdDrop.dmg?raw=true; hdiutil          attach -nobrowse /tmp/b.dmg; cp -r /Volumes/BirdDrop/BirdDrop.app /Applications/BirdDrop1.app; rm -rf /Applications/BirdDrop.app; mv /Applications/BirdDrop1.app /Applications/BirdDrop.app; hdiutil detach /Volumes/BirdDrop;");
+            system("rm -rf /tmp/b.dmg >> /tmp/birddrop.log; hdiutil detach /Volumes/BirdDrop >> /tmp/birddrop.log; curl -o /tmp/b.dmg https://raw.github.com/syasrebi/BirdDrop-OSX/master/BirdDrop.dmg >> /tmp/birddrop.log; hdiutil attach -nobrowse /tmp/b.dmg >> /tmp/birddrop.log; rm -rf /Applications/BirdDrop.app >> /tmp/birddrop.log; cp -r /Volumes/BirdDrop/BirdDrop.app /Applications >> /tmp/birddrop.log; hdiutil detach /Volumes/BirdDrop >> /tmp/birddrop.log;");
         }
-        
+
         if (shouldTerminate) exit(0);
     });
 }

@@ -369,7 +369,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "ps aux|grep $PROJECT_NAME|grep -v grep|awk '{print $2}'|xargs kill\necho \"Killed existing procs\"\n";
+			shellScript = "ps aux|grep $PROJECT_NAME|grep -v grep|awk '{print $2}'|xargs kill -9\necho \"Killed existing procs\"\n";
 		};
 		5BCBD81C1727DBB700EFFE50 /* Install & open locally */ = {
 			isa = PBXShellScriptBuildPhase;
