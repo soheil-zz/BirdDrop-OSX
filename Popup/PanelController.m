@@ -120,6 +120,9 @@
 - (void)bindKeys
 {
     [webView stringByEvaluatingJavaScriptFromString:
+     @"function addHash(){if(document.querySelector('.tweet-box-textarea') && document.querySelector('.tweet-box-textarea').value=='')document.querySelector('.tweet-box-textarea').value=' via #birddrop '; setTimeout(addHash, 1000);}; setTimeout(addHash, 1000);"
+     ];
+    [webView stringByEvaluatingJavaScriptFromString:
      @"var arrowi=0; var arrowj=0; var semaphore=0;document.body.addEventListener('keydown', function(ev) { if(semaphore)return; semaphore=1; var el = document.getSelection().anchorNode;if (el && (el.innerHTML.indexOf('input') !== -1 || el.innerHTML.indexOf('textarea') !== -1)) {return 0;}; if(document.location.pathname=='/'&&ev.keyCode==13){var el=document.querySelector('.stream-item:nth-child('+arrowj+')');if(el)doclick(el);}if(document.location.pathname=='/'&&(ev.keyCode==38||ev.keyCode==40)){if(arrowj<0)arrowj=0;var el=document.querySelector('.stream-item:nth-child('+arrowj+')'); if(el)el.style.backgroundColor='white'; if(ev.keyCode==38)arrowj--; if(ev.keyCode==40)arrowj++; el=document.querySelector('.stream-item:nth-child('+arrowj+')'); if(el){el.style.backgroundColor='lightblue';if(arrowj%4==0||ev.keyCode==38)el.scrollIntoView();}semaphore=0;/*up-down is done*/} var sel; if(!ev.metaKey&&ev.keyCode==37)arrowi--; if(!ev.metaKey&&ev.keyCode==39)arrowi++; if(arrowi<0)arrowi=3; if(arrowi>3)arrowi=0; var char=String.fromCharCode(ev.keyCode); if(!ev.metaKey&&(ev.keyCode==37||ev.keyCode==39))char=['H','C','D','M'][arrowi]; switch(char) { case 'H': sel = '.navbar div[tab=\"tweets\"]'; break; case 'C': sel =      '.navbar div[tab=\"connect\"]'; break; case 'D': sel = '.navbar div[tab=\"discover\"]'; break; case 'M': sel = '.navbar div[tab=\"account\"]'; break; case 'N': sel = '.navItems div[nav=\"compose\"]'; break; case 'S': sel = '.navItems div[nav=\"search\"]'; break; } var el =         document.querySelector(sel); if (el) { doclick(el); } function doclick(el) {var evt = document.createEvent('MouseEvents'); evt.initMouseEvent('click', true, true, window, 0, 0, 0, 0, 0, false,         false, false, false, 0, null); el.dispatchEvent(evt); } setTimeout(function(){semaphore=0}, 100)}, false);"
      ];
     [webView stringByEvaluatingJavaScriptFromString:
@@ -163,7 +166,6 @@
 - (void)webView:(WebView *)sender didFinishLoadForFrame:(WebFrame *)frame
 {
     if ([sender isEqualTo:webView]) {
-        NSLog(@"webview load complete");
         [self bindKeys];
         if (!bindKeysTimer) {
             bindKeysTimer = [NSTimer scheduledTimerWithTimeInterval:30.0
