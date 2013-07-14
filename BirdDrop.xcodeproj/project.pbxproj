@@ -40,6 +40,7 @@
 		5B12391D17324540004DC5ED /* SRRemoveShortcutPressed.tif in Resources */ = {isa = PBXBuildFile; fileRef = 5B12391917324540004DC5ED /* SRRemoveShortcutPressed.tif */; };
 		5B12391E17324540004DC5ED /* SRRemoveShortcutRollover.tif in Resources */ = {isa = PBXBuildFile; fileRef = 5B12391A17324540004DC5ED /* SRRemoveShortcutRollover.tif */; };
 		5B12391F17324540004DC5ED /* SRSnapback.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 5B12391B17324540004DC5ED /* SRSnapback.tiff */; };
+		5B3E85E81792587B0006E7D1 /* bird.aif in Resources */ = {isa = PBXBuildFile; fileRef = 5B3E85E71792587B0006E7D1 /* bird.aif */; };
 		5B766C051733A57A00B671F4 /* StatusBlue.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B766C031733A57A00B671F4 /* StatusBlue.png */; };
 		5B766C061733A57A00B671F4 /* StatusBlue@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B766C041733A57A00B671F4 /* StatusBlue@2x.png */; };
 		5B7C61611724E26E00E6FAD8 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5B7C61601724E26E00E6FAD8 /* WebKit.framework */; };
@@ -89,6 +90,7 @@
 		5B12391917324540004DC5ED /* SRRemoveShortcutPressed.tif */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = SRRemoveShortcutPressed.tif; sourceTree = "<group>"; };
 		5B12391A17324540004DC5ED /* SRRemoveShortcutRollover.tif */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = SRRemoveShortcutRollover.tif; sourceTree = "<group>"; };
 		5B12391B17324540004DC5ED /* SRSnapback.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = SRSnapback.tiff; sourceTree = "<group>"; };
+		5B3E85E71792587B0006E7D1 /* bird.aif */ = {isa = PBXFileReference; lastKnownFileType = file; path = bird.aif; sourceTree = "<group>"; };
 		5B766C031733A57A00B671F4 /* StatusBlue.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = StatusBlue.png; path = Popup/StatusBlue.png; sourceTree = "<group>"; };
 		5B766C041733A57A00B671F4 /* StatusBlue@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "StatusBlue@2x.png"; path = "Popup/StatusBlue@2x.png"; sourceTree = "<group>"; };
 		5B7C61601724E26E00E6FAD8 /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
@@ -188,6 +190,7 @@
 		DD4F7C0E13C30F9F00825C6E /* Sources */ = {
 			isa = PBXGroup;
 			children = (
+				5B3E85E71792587B0006E7D1 /* bird.aif */,
 				5B12391717324540004DC5ED /* Images */,
 				5B7C61641724F06400E6FAD8 /* DDHotKeyCenter.h */,
 				5B7C61651724F06500E6FAD8 /* DDHotKeyCenter.m */,
@@ -337,6 +340,7 @@
 				5B12391F17324540004DC5ED /* SRSnapback.tiff in Resources */,
 				5B766C051733A57A00B671F4 /* StatusBlue.png in Resources */,
 				5B766C061733A57A00B671F4 /* StatusBlue@2x.png in Resources */,
+				5B3E85E81792587B0006E7D1 /* bird.aif in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

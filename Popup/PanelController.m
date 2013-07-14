@@ -158,6 +158,8 @@
             notification.informativeText = resultActivityText;
             notification.soundName = NSUserNotificationDefaultSoundName;
             [[NSUserNotificationCenter defaultUserNotificationCenter] deliverNotification:notification];
+            NSSound *sound = [NSSound soundNamed:@"bird"];
+            [sound play];
         }
     }
     lastActivityTimestamp = currentActivityTimestamp;
