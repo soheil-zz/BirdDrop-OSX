@@ -69,10 +69,10 @@
         webView.frame = CGRectMake(0, 0, originalWebviewFrame.size.width, originalWebviewFrame.size.height);
     }
     [back setHidden:YES];
-    NSString *iphone = @"Mozilla/5.0 (iPhone; CPU iPhone OS 5_0 like Mac OS X) AppleWebKit/534.46 (KHTML, like Gecko) Version/5.1 Mobile/9A334 Safari/7534.48.3";
+    NSString *iphone = @"Mozilla/5.0 (iPhone; CPU iPhone OS 9_1 like Mac OS X) AppleWebKit/601.1.46 (KHTML, like Gecko) Version/9.0 Mobile/13B143 Safari/601.1";
     [webView setCustomUserAgent: iphone];
     
-    NSURL *url = [NSURL URLWithString:@"https://www.twitter.com"];
+    NSURL *url = [NSURL URLWithString:@"https://mobile.twitter.com/"];
     NSURLRequest *urlRequest = [NSURLRequest requestWithURL:url];
     [[webView mainFrame] loadRequest:urlRequest];
     
